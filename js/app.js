@@ -32,4 +32,16 @@ window.onload = function () {
 
     });
 
+    // Initialize guest count dropdown with correct order
+    const guestDropdown = document.getElementById("guestCount");
+    if (guestDropdown) {
+        guestDropdown.innerHTML = "";
+        for (let i = 1; i <= 4; i++) {
+            const option = document.createElement("option");
+            option.value = i;
+            option.textContent = i + " guest" + (i > 1 ? "s" : "");
+            guestDropdown.appendChild(option);
+        }
+    }
+
 };
