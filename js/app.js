@@ -44,6 +44,16 @@ window.onload = function () {
         }
     }
 
+    // Initialize subject dropdown styling
+    const subjectDropdown = document.getElementById("subject");
+    if (subjectDropdown) {
+        subjectDropdown.style.width = "100%";
+        subjectDropdown.style.backgroundColor = "#ffffff";
+        subjectDropdown.style.appearance = "none";
+        subjectDropdown.style.webkitAppearance = "none";
+        subjectDropdown.style.boxSizing = "border-box";
+    }
+
     // Contact Form Validation
     const contactForm = document.getElementById("contactForm");
     if (contactForm) {
