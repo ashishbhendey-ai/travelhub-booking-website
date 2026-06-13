@@ -44,14 +44,39 @@ window.onload = function () {
         }
     }
 
-    // Initialize subject dropdown styling
+    // Initialize subject dropdown styling with dropdown arrow icon
     const subjectDropdown = document.getElementById("subject");
     if (subjectDropdown) {
+        // Create wrapper div for proper positioning
+        const wrapper = document.createElement("div");
+        wrapper.style.position = "relative";
+        wrapper.style.width = "100%";
+        wrapper.style.display = "inline-block";
+        
+        // Insert wrapper before the select element
+        subjectDropdown.parentNode.insertBefore(wrapper, subjectDropdown);
+        wrapper.appendChild(subjectDropdown);
+        
+        // Style the select element
         subjectDropdown.style.width = "100%";
         subjectDropdown.style.backgroundColor = "#ffffff";
         subjectDropdown.style.appearance = "none";
         subjectDropdown.style.webkitAppearance = "none";
         subjectDropdown.style.boxSizing = "border-box";
+        subjectDropdown.style.paddingRight = "40px";
+        
+        // Create dropdown arrow icon using pseudo-element style approach
+        const arrow = document.createElement("span");
+        arrow.style.position = "absolute";
+        arrow.style.right = "12px";
+        arrow.style.top = "50%";
+        arrow.style.transform = "translateY(-50%)";
+        arrow.style.pointerEvents = "none";
+        arrow.style.fontSize = "16px";
+        arrow.style.color = "#666";
+        arrow.innerHTML = "&#9662;";
+        
+        wrapper.appendChild(arrow);
     }
 
     // Contact Form Validation
