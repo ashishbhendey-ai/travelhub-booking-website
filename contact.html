@@ -7,6 +7,11 @@
 <link rel="stylesheet" href="css/style.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <style>
+.subject-wrapper {
+  position: relative;
+  width: 100%;
+}
+
 #subject {
   width: 100%;
   box-sizing: border-box;
@@ -14,12 +19,24 @@
   -webkit-appearance: none;
   -moz-appearance: none;
   background-color: #ffffff;
-  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/csvg%3e");
-  background-repeat: no-repeat;
-  background-position: right 12px center;
-  background-size: 20px;
   padding-right: 40px;
+  padding-left: 12px;
   z-index: 1;
+  position: relative;
+}
+
+.subject-wrapper::after {
+  content: '\f078';
+  font-family: 'Font Awesome 6 Free';
+  font-weight: 900;
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+  color: #666;
+  font-size: 14px;
+  z-index: 2;
 }
 
 #subject option {
@@ -151,6 +168,7 @@
 
 <div class="form-group">
 <label for="subject">Subject</label>
+<div class="subject-wrapper">
 <select id="subject" name="subject" required>
 <option value="">Select a subject</option>
 <option value="booking">Booking Inquiry</option>
@@ -158,6 +176,7 @@
 <option value="feedback">Feedback</option>
 <option value="other">Other</option>
 </select>
+</div>
 <span class="error-message" id="subjectError"></span>
 </div>
 
