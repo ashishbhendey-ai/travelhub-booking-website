@@ -79,6 +79,54 @@ window.onload = function () {
         wrapper.appendChild(arrow);
     }
 
+    // Initialize Contact Info Grid Layout
+    const contactInfoGrid = document.querySelector(".contact-info-grid");
+    if (contactInfoGrid) {
+        // Apply grid styling
+        contactInfoGrid.style.display = "grid";
+        contactInfoGrid.style.gridTemplateColumns = "repeat(2, 1fr)";
+        contactInfoGrid.style.gap = "24px";
+        contactInfoGrid.style.marginBottom = "48px";
+        
+        // Style individual contact cards
+        const contactCards = contactInfoGrid.querySelectorAll(".contact-card");
+        contactCards.forEach(function(card) {
+            card.style.padding = "24px";
+            card.style.borderRadius = "8px";
+            card.style.backgroundColor = "#ffffff";
+            card.style.boxShadow = "0 2px 8px rgba(0, 0, 0, 0.1)";
+            card.style.transition = "box-shadow 0.3s ease, transform 0.3s ease";
+            card.style.minHeight = "200px";
+            card.style.display = "flex";
+            card.style.flexDirection = "column";
+            card.style.justifyContent = "flex-start";
+            
+            // Hover effect
+            card.onmouseover = function() {
+                this.style.boxShadow = "0 4px 16px rgba(0, 0, 0, 0.15)";
+                this.style.transform = "translateY(-4px)";
+            };
+            
+            card.onmouseout = function() {
+                this.style.boxShadow = "0 2px 8px rgba(0, 0, 0, 0.1)";
+                this.style.transform = "translateY(0)";
+            };
+        });
+        
+        // Responsive design - tablet (768px and below)
+        const mediaQueryTablet = window.matchMedia("(max-width: 768px)");
+        const applyTabletStyles = function(e) {
+            if (e.matches) {
+                contactInfoGrid.style.gridTemplateColumns = "1fr";
+            } else {
+                contactInfoGrid.style.gridTemplateColumns = "repeat(2, 1fr)";
+            }
+        };
+        
+        mediaQueryTablet.addListener(applyTabletStyles);
+        applyTabletStyles(mediaQueryTablet);
+    }
+
     // Contact Form Validation
     const contactForm = document.getElementById("contactForm");
     if (contactForm) {
