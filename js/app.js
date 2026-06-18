@@ -2,132 +2,76 @@ window.onload = function () {
 
     console.log("app.js loaded");
 
-    const searchBtn = document.getElementById("searchBtn");
-
-    if (searchBtn) {
-
-        searchBtn.onclick = function () {
-
-           
-
-            window.location.href = "hotels.html";
-
+    // ashAI - Get Started Button
+    const getStartedBtn = document.getElementById("getStartedBtn");
+    if (getStartedBtn) {
+        getStartedBtn.onclick = function () {
+            window.location.href = "signup.html";
         };
-
     }
 
-    const reserveButtons =
-        document.querySelectorAll(".reserve-btn");
-
-    reserveButtons.forEach(function(button) {
-
-        button.onclick = function () {
-
-            alert("Reserve Clicked");
-
-            window.location.href =
-                "booking.html";
-
+    // ashAI - Feature Cards Click Handler
+    const featureCards = document.querySelectorAll(".feature-card");
+    featureCards.forEach(function(card) {
+        card.style.cursor = "pointer";
+        card.style.transition = "transform 0.3s ease, box-shadow 0.3s ease";
+        
+        card.onmouseover = function() {
+            this.style.transform = "translateY(-8px)";
+            this.style.boxShadow = "0 12px 24px rgba(0, 0, 0, 0.15)";
         };
-
+        
+        card.onmouseout = function() {
+            this.style.transform = "translateY(0)";
+            this.style.boxShadow = "0 4px 12px rgba(0, 0, 0, 0.08)";
+        };
     });
 
-    // Initialize guest count dropdown with correct order
-    const guestDropdown = document.getElementById("guestCount");
-    if (guestDropdown) {
-        guestDropdown.innerHTML = "";
-        for (let i = 1; i <= 4; i++) {
-            const option = document.createElement("option");
-            option.value = i;
-            option.textContent = i + " guest" + (i > 1 ? "s" : "");
-            guestDropdown.appendChild(option);
-        }
-    }
-
-    // Initialize subject dropdown styling with dropdown arrow icon
-    const subjectDropdown = document.getElementById("subject");
-    if (subjectDropdown) {
-        // Create wrapper div for proper positioning
-        const wrapper = document.createElement("div");
-        wrapper.style.position = "relative";
-        wrapper.style.width = "100%";
-        wrapper.style.display = "inline-block";
-        
-        // Insert wrapper before the select element
-        subjectDropdown.parentNode.insertBefore(wrapper, subjectDropdown);
-        wrapper.appendChild(subjectDropdown);
-        
-        // Style the select element
-        subjectDropdown.style.width = "100%";
-        subjectDropdown.style.backgroundColor = "#ffffff";
-        subjectDropdown.style.appearance = "none";
-        subjectDropdown.style.webkitAppearance = "none";
-        subjectDropdown.style.boxSizing = "border-box";
-        subjectDropdown.style.paddingRight = "40px";
-        
-        // Create dropdown arrow icon using pseudo-element style approach
-        const arrow = document.createElement("span");
-        arrow.style.position = "absolute";
-        arrow.style.right = "12px";
-        arrow.style.top = "50%";
-        arrow.style.transform = "translateY(-50%)";
-        arrow.style.pointerEvents = "none";
-        arrow.style.fontSize = "16px";
-        arrow.style.color = "#666";
-        arrow.innerHTML = "&#9662;";
-        
-        wrapper.appendChild(arrow);
-    }
-
-    // Initialize Contact Info Grid Layout
-    const contactInfoGrid = document.querySelector(".contact-info-grid");
-    if (contactInfoGrid) {
-        // Apply grid styling
-        contactInfoGrid.style.display = "grid";
-        contactInfoGrid.style.gridTemplateColumns = "repeat(2, 1fr)";
-        contactInfoGrid.style.gap = "24px";
-        contactInfoGrid.style.marginBottom = "48px";
-        
-        // Style individual contact cards
-        const contactCards = contactInfoGrid.querySelectorAll(".contact-card");
-        contactCards.forEach(function(card) {
-            card.style.padding = "24px";
-            card.style.borderRadius = "8px";
-            card.style.backgroundColor = "#ffffff";
-            card.style.boxShadow = "0 2px 8px rgba(0, 0, 0, 0.1)";
-            card.style.transition = "box-shadow 0.3s ease, transform 0.3s ease";
-            card.style.minHeight = "200px";
-            card.style.display = "flex";
-            card.style.flexDirection = "column";
-            card.style.justifyContent = "flex-start";
-            
-            // Hover effect
-            card.onmouseover = function() {
-                this.style.boxShadow = "0 4px 16px rgba(0, 0, 0, 0.15)";
-                this.style.transform = "translateY(-4px)";
-            };
-            
-            card.onmouseout = function() {
-                this.style.boxShadow = "0 2px 8px rgba(0, 0, 0, 0.1)";
-                this.style.transform = "translateY(0)";
-            };
-        });
-        
-        // Responsive design - tablet (768px and below)
-        const mediaQueryTablet = window.matchMedia("(max-width: 768px)");
-        const applyTabletStyles = function(e) {
-            if (e.matches) {
-                contactInfoGrid.style.gridTemplateColumns = "1fr";
-            } else {
-                contactInfoGrid.style.gridTemplateColumns = "repeat(2, 1fr)";
-            }
+    // ashAI - Value Proposition Buttons
+    const valuePropButtons = document.querySelectorAll(".value-prop-btn");
+    valuePropButtons.forEach(function(button) {
+        button.onclick = function () {
+            window.location.href = "features.html";
         };
-        
-        mediaQueryTablet.addListener(applyTabletStyles);
-        applyTabletStyles(mediaQueryTablet);
+    });
+
+    // ashAI - Demo Request Button
+    const demoRequestBtn = document.getElementById("demoRequestBtn");
+    if (demoRequestBtn) {
+        demoRequestBtn.onclick = function () {
+            window.location.href = "demo.html";
+        };
     }
 
-    // Contact Form Validation
+    // ashAI - Newsletter Subscription Form
+    const newsletterForm = document.getElementById("newsletterForm");
+    if (newsletterForm) {
+        newsletterForm.onsubmit = function (e) {
+            e.preventDefault();
+            
+            const newsletterEmail = document.getElementById("newsletterEmail");
+            
+            if (!newsletterEmail.value.trim()) {
+                alert("Please enter your email address");
+                newsletterEmail.focus();
+                return false;
+            }
+            
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(newsletterEmail.value)) {
+                alert("Please enter a valid email address");
+                newsletterEmail.focus();
+                return false;
+            }
+            
+            alert("Thank you for subscribing to ashAI updates!");
+            newsletterForm.reset();
+            
+            return false;
+        };
+    }
+
+    // ashAI - Contact Form Validation
     const contactForm = document.getElementById("contactForm");
     if (contactForm) {
         contactForm.onsubmit = function (e) {
@@ -135,8 +79,7 @@ window.onload = function () {
             
             const fullName = document.getElementById("fullName");
             const email = document.getElementById("email");
-            const phone = document.getElementById("phone");
-            const subject = document.getElementById("subject");
+            const company = document.getElementById("company");
             const message = document.getElementById("message");
             
             // Validation
@@ -159,22 +102,9 @@ window.onload = function () {
                 return false;
             }
             
-            if (!phone.value.trim()) {
-                alert("Please enter your phone number");
-                phone.focus();
-                return false;
-            }
-            
-            const phoneRegex = /^[\d\s\-\+\(\)]+$/;
-            if (!phoneRegex.test(phone.value)) {
-                alert("Please enter a valid phone number");
-                phone.focus();
-                return false;
-            }
-            
-            if (!subject.value.trim()) {
-                alert("Please enter a subject");
-                subject.focus();
+            if (!company.value.trim()) {
+                alert("Please enter your company name");
+                company.focus();
                 return false;
             }
             
@@ -191,42 +121,14 @@ window.onload = function () {
             }
             
             // Success message
-            alert("Thank you for your message! We will get back to you soon.");
+            alert("Thank you for contacting ashAI! We will get back to you soon.");
             contactForm.reset();
             
             return false;
         };
     }
 
-    // Newsletter Subscription Form
-    const newsletterForm = document.getElementById("newsletterForm");
-    if (newsletterForm) {
-        newsletterForm.onsubmit = function (e) {
-            e.preventDefault();
-            
-            const newsletterEmail = document.getElementById("newsletterEmail");
-            
-            if (!newsletterEmail.value.trim()) {
-                alert("Please enter your email address");
-                newsletterEmail.focus();
-                return false;
-            }
-            
-            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            if (!emailRegex.test(newsletterEmail.value)) {
-                alert("Please enter a valid email address");
-                newsletterEmail.focus();
-                return false;
-            }
-            
-            alert("Thank you for subscribing to our newsletter!");
-            newsletterForm.reset();
-            
-            return false;
-        };
-    }
-
-    // FAQ Accordion Toggle
+    // ashAI - FAQ Accordion Toggle
     const accordionButtons = document.querySelectorAll(".accordion-btn");
     accordionButtons.forEach(function(button) {
         button.onclick = function (e) {
@@ -248,7 +150,7 @@ window.onload = function () {
         };
     });
 
-    // Contact Support Button
+    // ashAI - Contact Support Button
     const contactSupportBtn = document.getElementById("contactSupportBtn");
     if (contactSupportBtn) {
         contactSupportBtn.onclick = function () {
@@ -259,12 +161,25 @@ window.onload = function () {
         };
     }
 
-    // Smooth scroll for social media links
+    // ashAI - Smooth scroll for social media links
     const socialLinks = document.querySelectorAll(".social-link");
     socialLinks.forEach(function(link) {
         link.onclick = function (e) {
-            // Allow default behavior for external links
             console.log("Social media link clicked: " + this.getAttribute("href"));
+        };
+    });
+
+    // ashAI - CTA Button Animations
+    const ctaButtons = document.querySelectorAll(".cta-btn");
+    ctaButtons.forEach(function(button) {
+        button.style.transition = "all 0.3s ease";
+        
+        button.onmouseover = function() {
+            this.style.transform = "scale(1.05)";
+        };
+        
+        button.onmouseout = function() {
+            this.style.transform = "scale(1)";
         };
     });
 
